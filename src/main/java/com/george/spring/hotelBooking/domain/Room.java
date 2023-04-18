@@ -4,6 +4,8 @@ package com.george.spring.hotelBooking.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 public class Room {
@@ -13,6 +15,7 @@ public class Room {
     private String name;
     private String description;
     private Double pricePerNight;
+    private Status status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

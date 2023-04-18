@@ -1,9 +1,6 @@
 package com.george.spring.hotelBooking.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -17,5 +14,6 @@ public class User {
     private String username;
     private String password;
     private String passwordConfirmation;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Room> bookedRoom;
 }
