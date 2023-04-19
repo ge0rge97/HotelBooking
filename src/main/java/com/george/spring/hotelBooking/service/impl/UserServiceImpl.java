@@ -1,6 +1,6 @@
 package com.george.spring.hotelBooking.service.impl;
 
-import com.george.spring.hotelBooking.domain.User;
+import com.george.spring.hotelBooking.domain.user.User;
 import com.george.spring.hotelBooking.exception.ResourceNotFoundException;
 import com.george.spring.hotelBooking.repository.UserRepository;
 import com.george.spring.hotelBooking.service.UserService;

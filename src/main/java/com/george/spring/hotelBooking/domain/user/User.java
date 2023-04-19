@@ -1,5 +1,6 @@
-package com.george.spring.hotelBooking.domain;
+package com.george.spring.hotelBooking.domain.user;
 
+import com.george.spring.hotelBooking.domain.room.Room;
 import jakarta.persistence.*;
 import lombok.Data;
 

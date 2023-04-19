@@ -1,6 +1,6 @@
 package com.george.spring.hotelBooking.web.dto.mappers;
 
-import com.george.spring.hotelBooking.domain.User;
+import com.george.spring.hotelBooking.domain.user.User;
 import com.george.spring.hotelBooking.web.dto.user.UserDto;
 import org.mapstruct.Mapper;
 

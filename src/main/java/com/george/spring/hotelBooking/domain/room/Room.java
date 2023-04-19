@@ -1,10 +1,9 @@
-package com.george.spring.hotelBooking.domain;
+package com.george.spring.hotelBooking.domain.room;
 
 
+import com.george.spring.hotelBooking.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.math.BigDecimal;
 
 @Entity
 @Data

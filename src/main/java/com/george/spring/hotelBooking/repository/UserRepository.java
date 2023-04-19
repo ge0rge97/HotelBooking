@@ -1,6 +1,6 @@
 package com.george.spring.hotelBooking.repository;
 
-import com.george.spring.hotelBooking.domain.User;
+import com.george.spring.hotelBooking.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

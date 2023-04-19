@@ -1,7 +1,6 @@
 package com.george.spring.hotelBooking.service;
 
-import com.george.spring.hotelBooking.domain.User;
-import com.george.spring.hotelBooking.exception.ResourceNotFoundException;
+import com.george.spring.hotelBooking.domain.user.User;
 
 public interface UserService {
     User create(User user);

@@ -1,6 +1,6 @@
 package com.george.spring.hotelBooking.web.controller;
 
-import com.george.spring.hotelBooking.domain.User;
+import com.george.spring.hotelBooking.domain.user.User;
 import com.george.spring.hotelBooking.service.AuthService;
 import com.george.spring.hotelBooking.service.UserService;
 import com.george.spring.hotelBooking.web.dto.mappers.UserMapper;
