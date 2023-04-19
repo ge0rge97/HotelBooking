@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-
+//    private final PasswordEncoder passwordEncoder;
     @Override
     public User create(User user) {
-        return null;
+        userRepository.save(user);
+        return user;
     }
     @Override
     public User getById(Long id) {
