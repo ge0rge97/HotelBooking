@@ -7,10 +7,7 @@ import com.george.spring.hotelBooking.web.dto.mappers.RoomMapper;
 import com.george.spring.hotelBooking.web.dto.mappers.UserMapper;
 import com.george.spring.hotelBooking.web.dto.user.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -25,5 +22,9 @@ public class UserController {
     public UserDto getById(@PathVariable Long id) {
         User user = userService.getById(id);
         return userMapper.toDto(user);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable Long id) {
+        userService.deleteById(id);
     }
 }

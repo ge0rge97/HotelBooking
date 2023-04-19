@@ -1,6 +1,7 @@
 package com.george.spring.hotelBooking.service.impl;
 
 import com.george.spring.hotelBooking.domain.User;
+import com.george.spring.hotelBooking.exception.ResourceNotFoundException;
 import com.george.spring.hotelBooking.repository.UserRepository;
 import com.george.spring.hotelBooking.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,19 +14,22 @@ public class UserServiceImpl implements UserService {
 //    private final PasswordEncoder passwordEncoder;
     @Override
     public User create(User user) {
+//        user.setPassword(passwordEncoder);
         userRepository.save(user);
         return user;
     }
     @Override
     public User getById(Long id) {
-        return null;
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
     }
     @Override
     public User getByUsername(String username) {
-        return null;
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
     }
     @Override
     public void deleteById(Long id) {
-
+        userRepository.deleteById(id);
     }
 }
