@@ -20,7 +20,7 @@ public class RoomController {
 
     @PostMapping("/generate")
     public void generateFakeRooms() {
-        roomService.generateRoom(5);
+        roomService.generateRoom(10);
     }
     @GetMapping()
     public List<Room> getAllRooms() {

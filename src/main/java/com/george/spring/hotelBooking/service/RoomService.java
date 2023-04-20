@@ -9,5 +9,5 @@ public interface RoomService {
     Room getById(Long id);
     List<Room> getAllByUserId(Long id);
     List<Room> getAllFreeRoom();
-    Room bookRoom(Room room, Long userId);
+    Room bookRoom(Long userId, Long roomId);
 }
