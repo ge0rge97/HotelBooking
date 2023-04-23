@@ -29,7 +29,8 @@ public class RoomServiceImpl implements RoomService {
     }
     @Override
     public Room getById(Long id) {
-        return null;
+        return roomRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Room not Found"));
     }
     @Override
     public List<Room> getAllByUserId(Long id) {
@@ -38,8 +39,8 @@ public class RoomServiceImpl implements RoomService {
         return user.getBookedRoom();
     }
     @Override
-    public List<Room> getAllFreeRoom() {
-        return roomRepository.findAll();
+    public List<Room> getAllFreeRooms() {
+        return roomRepository.findByStatus(Status.AVAILABLE_ROOM);
     }
     @Override
     public Room bookRoom(Long userId, Long roomId) {
@@ -53,5 +54,24 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.save(room);
         userRepository.save(user);
         return room;
+    }
+
+    @Override
+    public Room cancelBookRoom(Long userId, Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new ResourceNotFoundException("Room not Found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
+        room.setStatus(Status.AVAILABLE_ROOM);
+        room.setUser(null);
+        user.getBookedRoom().remove(room);
+        roomRepository.save(room);
+        userRepository.save(user);
+        return room;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        roomRepository.deleteById(id);
     }
 }

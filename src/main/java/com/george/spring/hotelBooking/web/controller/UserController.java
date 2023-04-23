@@ -37,6 +37,11 @@ public class UserController {
         Room room = roomService.bookRoom(id, roomId);
         return roomMapper.toDto(room);
     }
+    @PostMapping("/{id}/rooms/book/{roomId}/cancel")
+    public RoomDto cancelBookRoom(@PathVariable Long id, @PathVariable Long roomId) {
+        Room room = roomService.cancelBookRoom(id, roomId);
+        return roomMapper.toDto(room);
+    }
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable Long id) {
         userService.deleteById(id);

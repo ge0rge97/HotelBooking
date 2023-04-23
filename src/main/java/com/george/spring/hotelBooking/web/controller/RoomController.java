@@ -3,11 +3,11 @@ package com.george.spring.hotelBooking.web.controller;
 import com.george.spring.hotelBooking.domain.room.Room;
 import com.george.spring.hotelBooking.service.RoomService;
 import com.george.spring.hotelBooking.service.UserService;
+import com.george.spring.hotelBooking.web.dto.mappers.RoomMapper;
+import com.george.spring.hotelBooking.web.dto.mappers.UserMapper;
+import com.george.spring.hotelBooking.web.dto.room.RoomDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,13 +17,25 @@ import java.util.List;
 public class RoomController {
     private final UserService userService;
     private final RoomService roomService;
+    private final UserMapper userMapper;
+    private final RoomMapper roomMapper;
 
+    @GetMapping("")
+    public List<RoomDto> getAllFreeRooms() {
+        List<RoomDto> rooms = roomMapper.toDto(roomService.getAllFreeRooms());
+        return rooms;
+    }
+    @GetMapping("/{id}")
+    public RoomDto getRoomById(@PathVariable Long id) {
+        Room room = roomService.getById(id);
+        return roomMapper.toDto(room);
+    }
     @PostMapping("/generate")
     public void generateFakeRooms() {
         roomService.generateRoom(10);
     }
-    @GetMapping()
-    public List<Room> getAllRooms() {
-        return roomService.getAllFreeRoom();
+    @DeleteMapping("/{id}")
+    public void deleteRoomById(@PathVariable Long id) {
+        roomService.deleteById(id);
     }
 }
