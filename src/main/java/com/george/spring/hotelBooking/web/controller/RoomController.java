@@ -21,6 +21,11 @@ public class RoomController {
     private final RoomMapper roomMapper;
 
     @GetMapping("")
+    public List<RoomDto> getAllRooms() {
+        List<Room> rooms = roomService.getAllRooms();
+        return roomMapper.toDto(rooms);
+    }
+    @GetMapping("/free")
     public List<RoomDto> getAllFreeRooms() {
         List<RoomDto> rooms = roomMapper.toDto(roomService.getAllFreeRooms());
         return rooms;
@@ -35,7 +40,5 @@ public class RoomController {
         roomService.generateRoom(10);
     }
     @DeleteMapping("/{id}")
-    public void deleteRoomById(@PathVariable Long id) {
-        roomService.deleteById(id);
-    }
+    public void deleteRoomById(@PathVariable Long id) { roomService.deleteById(id); }
 }

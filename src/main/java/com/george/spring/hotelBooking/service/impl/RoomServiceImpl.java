@@ -39,6 +39,8 @@ public class RoomServiceImpl implements RoomService {
         return user.getBookedRoom();
     }
     @Override
+    public List<Room> getAllRooms() { return roomRepository.findAll(); }
+    @Override
     public List<Room> getAllFreeRooms() {
         return roomRepository.findByStatus(Status.AVAILABLE_ROOM);
     }
@@ -55,7 +57,6 @@ public class RoomServiceImpl implements RoomService {
         userRepository.save(user);
         return room;
     }
-
     @Override
     public Room cancelBookRoom(Long userId, Long roomId) {
         Room room = roomRepository.findById(roomId)
@@ -69,9 +70,6 @@ public class RoomServiceImpl implements RoomService {
         userRepository.save(user);
         return room;
     }
-
     @Override
-    public void deleteById(Long id) {
-        roomRepository.deleteById(id);
-    }
+    public void deleteById(Long id) { roomRepository.deleteById(id); }
 }
