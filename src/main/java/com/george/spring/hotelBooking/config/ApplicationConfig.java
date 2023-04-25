@@ -32,29 +32,29 @@ public class ApplicationConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf().disable()
-                .cors()
+                    .csrf().disable()
+                    .cors()
                 .and()
-                .httpBasic().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .httpBasic().disable()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(((request, response, authException) -> {
-                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    response.getWriter().write("UNAUTHORIZED.");
-                }))
-                .accessDeniedHandler(((request, response, accessDeniedException) -> {
-                    response.setStatus(HttpStatus.FORBIDDEN.value());
-                    response.getWriter().write("UNAUTHORIZED.");
-                }))
+                    .exceptionHandling()
+                    .authenticationEntryPoint(((request, response, authException) -> {
+                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                        response.getWriter().write("UNAUTHORIZED.");
+                    }))
+                    .accessDeniedHandler(((request, response, accessDeniedException) -> {
+                        response.setStatus(HttpStatus.FORBIDDEN.value());
+                        response.getWriter().write("UNAUTHORIZED.");
+                    }))
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .anyRequest().authenticated()
+                    .authorizeHttpRequests()
+                    .requestMatchers("/api/v1/auth/**").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .anonymous().disable()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                    .anonymous().disable()
+                    .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }
