@@ -5,4 +5,5 @@ import com.george.spring.hotelBooking.web.dto.auth.JwtResponse;
 
 public interface AuthService {
     JwtResponse login(JwtRequest request);
+    JwtResponse refresh(String refreshToken);
 }
