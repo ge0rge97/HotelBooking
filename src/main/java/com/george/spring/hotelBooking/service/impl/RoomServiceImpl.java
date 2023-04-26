@@ -10,6 +10,7 @@ import com.george.spring.hotelBooking.repository.UserRepository;
 import com.george.spring.hotelBooking.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -50,6 +51,9 @@ public class RoomServiceImpl implements RoomService {
                 .orElseThrow(() -> new ResourceNotFoundException("Room not Found"));
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
+        if (room.getStatus() == Status.BOOKED_ROOM) {
+            throw new IllegalStateException("Room have already booked.");
+        }
         room.setStatus(Status.BOOKED_ROOM);
         room.setUser(user);
         user.getBookedRoom().add(room);

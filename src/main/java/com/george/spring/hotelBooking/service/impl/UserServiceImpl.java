@@ -1,6 +1,7 @@
 package com.george.spring.hotelBooking.service.impl;
 
 import com.george.spring.hotelBooking.domain.user.User;
+import com.george.spring.hotelBooking.exception.ResourceAlreadyExistsException;
 import com.george.spring.hotelBooking.exception.ResourceNotFoundException;
 import com.george.spring.hotelBooking.repository.UserRepository;
 import com.george.spring.hotelBooking.service.UserService;
@@ -15,6 +16,12 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     @Override
     public User create(User user) {
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new ResourceAlreadyExistsException("User already exists");
+        }
+        if (!user.getPassword().equals(user.getPasswordConfirmation())) {
+            throw new IllegalStateException();
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return user;
