@@ -35,6 +35,12 @@ public class RoomController {
         Room room = roomService.getById(id);
         return roomMapper.toDto(room);
     }
+    @PutMapping("")
+    public RoomDto updateRoom(@RequestBody RoomDto roomDto) {
+        Room room = roomMapper.toEntity(roomDto);
+        Room updatedRoom = roomService.updateRoom(room);
+        return roomMapper.toDto(updatedRoom);
+    }
     @PostMapping("/generate")
     public void generateFakeRooms() {
         roomService.generateRoom(10);
