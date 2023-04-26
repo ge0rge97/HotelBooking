@@ -12,7 +12,7 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 public class JwtEntity implements UserDetails {
-    private Long id;
+    private final Long id;
     private final String username;
     private final String password;
 

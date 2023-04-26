@@ -3,6 +3,8 @@ package com.george.spring.hotelBooking.web.controller;
 import com.george.spring.hotelBooking.domain.user.User;
 import com.george.spring.hotelBooking.service.AuthService;
 import com.george.spring.hotelBooking.service.UserService;
+import com.george.spring.hotelBooking.web.dto.auth.JwtRequest;
+import com.george.spring.hotelBooking.web.dto.auth.JwtResponse;
 import com.george.spring.hotelBooking.web.dto.mappers.UserMapper;
 import com.george.spring.hotelBooking.web.dto.user.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +26,9 @@ public class AuthController {
         User user = userMapper.toEntity(userDto);
         User createdUser = userService.create(user);
         return userMapper.toDto(createdUser);
+    }
+    @PostMapping("/login")
+    public JwtResponse login(@RequestBody JwtRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }
