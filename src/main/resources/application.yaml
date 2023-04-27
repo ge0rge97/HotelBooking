@@ -12,3 +12,5 @@ security:
     secret: dmtkbXZsZHNkZm5yaXdldzMwMjNpOTRqZnZwc1tkZGZrbXdlbWZrd24=
     access: 3600000
     refresh: 259200000
+springdoc:
+  override-with-generic-response: false
